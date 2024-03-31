@@ -1,32 +1,19 @@
 import dynamic from "next/dynamic";
-import { useLayoutEffect, useState } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../app/theme-context";
 
 const ToggleTheme = () => {
-  const [themeName, setThemeName] = useState(() => {
-    return document.documentElement.classList.contains("light") ||
-      window.matchMedia("(prefers-color-scheme: light)").matches
-      ? "light"
-      : "dark";
-  });
-
-  useLayoutEffect(() => {
-    document.documentElement.classList.remove(
-      themeName === "light" ? "dark" : "light"
-    );
-    document.documentElement.classList.add(
-      themeName === "light" ? "light" : "dark"
-    );
-  }, [themeName]);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   return (
     <button
       type="button"
-      onClick={() => setThemeName((pr) => (pr === "dark" ? "light" : "dark"))}
+      onClick={() => setTheme((pr) => (pr === "dark" ? "light" : "dark"))}
       style={{ position: "absolute", top: "1rem", right: "1rem" }}
       className="rounded-full"
       aria-label="toggle theme"
     >
-      {themeName === "dark" ? (
+      {theme === "dark" ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           enableBackground="new 0 0 24 24"
