@@ -37,6 +37,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
       - name: Build
         run: |
           npm ci
@@ -44,7 +53,7 @@ jobs:
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'out'
+          path: "out"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
