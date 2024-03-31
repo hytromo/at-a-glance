@@ -6,6 +6,8 @@ import { DateTime } from "luxon";
 
 import { useContext, useEffect, useMemo, useState } from "react";
 import { InitDataContext } from "../app/data/init-data-context";
+import { ThemeContext } from "../app/theme-context";
+import { getTheme } from "./nivo-theme";
 
 type HourlyRecord = {
   HourUTC: string;
@@ -55,6 +57,7 @@ const calculateMiddleColor = ({
 };
 
 export default function ElPrice() {
+  const { theme } = useContext(ThemeContext);
   const [prices, setPrices] = useState<Serie[] | null>();
   const [maxPrice, setMaxPrice] = useState<number>(3);
   const [maxPricePerDay, setMaxPricePerDay] = useState({
@@ -222,22 +225,7 @@ export default function ElPrice() {
       margin={{ bottom: 60, left: 80, right: 30, top: 30 }}
       curve="monotoneX"
       enableArea
-      theme={{
-        axis: {
-          legend: {
-            text: {
-              fontSize: 20,
-              fontWeight: "bold",
-            },
-          },
-          ticks: {
-            text: {
-              fontSize: 15,
-              fontWeight: "bold",
-            },
-          },
-        },
-      }}
+      theme={getTheme(theme)}
       xScale={{
         type: "time",
         format: "native",

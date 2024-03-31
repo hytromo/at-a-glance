@@ -5,10 +5,13 @@ import { ResponsiveLineCanvas } from "@nivo/line";
 import { DateTime } from "luxon";
 import { useContext } from "react";
 import { InitDataContext } from "../app/data/init-data-context";
+import { ThemeContext } from "../app/theme-context";
 import { WeatherContext } from "./WeatherCombo";
+import { getTheme } from "./nivo-theme";
 
 export default function WeatherWind() {
   const { timezone } = useContext(InitDataContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <WeatherContext.Consumer>
@@ -27,22 +30,7 @@ export default function WeatherWind() {
             legendPosition: "middle",
             legendOffset: -55,
           }}
-          theme={{
-            axis: {
-              legend: {
-                text: {
-                  fontSize: 20,
-                  fontWeight: "bold",
-                },
-              },
-              ticks: {
-                text: {
-                  fontSize: 15,
-                  fontWeight: "bold",
-                },
-              },
-            },
-          }}
+          theme={getTheme(theme)}
           xScale={{
             type: "time",
             format: "native",
