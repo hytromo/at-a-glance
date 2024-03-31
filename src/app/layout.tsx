@@ -1,4 +1,5 @@
 "use client";
+import dynamic from "next/dynamic";
 import { Inter } from "next/font/google";
 import { useLayoutEffect, useState } from "react";
 import ToggleTheme from "../components/ToggleTheme";
@@ -7,7 +8,7 @@ import { ThemeContext } from "./theme-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({
+function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -39,3 +40,7 @@ export default function RootLayout({
     </ThemeContext.Provider>
   );
 }
+
+export default dynamic(() => Promise.resolve(RootLayout), {
+  ssr: false,
+});
