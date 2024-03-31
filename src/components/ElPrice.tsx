@@ -7,7 +7,7 @@ import { DateTime } from "luxon";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { InitDataContext } from "../app/data/init-data-context";
 import { ThemeContext } from "../app/theme-context";
-import { getTheme } from "./nivo-theme";
+import { getMargin, getTheme } from "./nivo-theme";
 
 type HourlyRecord = {
   HourUTC: string;
@@ -57,7 +57,7 @@ const calculateMiddleColor = ({
 };
 
 export default function ElPrice() {
-  const { theme } = useContext(ThemeContext);
+  const { theme, isMobile } = useContext(ThemeContext);
   const [prices, setPrices] = useState<Serie[] | null>();
   const [maxPrice, setMaxPrice] = useState<number>(3);
   const [maxPricePerDay, setMaxPricePerDay] = useState({
@@ -221,11 +221,11 @@ export default function ElPrice() {
       data={prices}
       enableCrosshair
       crosshairType="top-left"
-      pixelRatio={1}
-      margin={{ bottom: 60, left: 80, right: 30, top: 30 }}
+      pixelRatio={3}
+      margin={getMargin(isMobile)}
       curve="monotoneX"
       enableArea
-      theme={getTheme(theme)}
+      theme={getTheme(theme, isMobile)}
       xScale={{
         type: "time",
         format: "native",
@@ -241,7 +241,7 @@ export default function ElPrice() {
         },
         tickSize: 5,
         tickRotation: 90,
-        tickValues: allDataPoints?.map((d) => d.x) || [],
+        tickValues: isMobile ? undefined : allDataPoints?.map((d) => d.x) || [],
         legend: "Hour",
         legendPosition: "middle",
         legendOffset: 40,

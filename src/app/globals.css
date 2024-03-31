@@ -17,6 +17,12 @@ body {
   background: rgb(var(--background-rgb));
 }
 
+@media (max-width: 1000px) {
+  :root {
+    font-size: 10px;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

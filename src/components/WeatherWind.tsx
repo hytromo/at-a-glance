@@ -7,11 +7,11 @@ import { useContext } from "react";
 import { InitDataContext } from "../app/data/init-data-context";
 import { ThemeContext } from "../app/theme-context";
 import { WeatherContext } from "./WeatherCombo";
-import { getTheme } from "./nivo-theme";
+import { getMargin, getTheme } from "./nivo-theme";
 
 export default function WeatherWind() {
   const { timezone } = useContext(InitDataContext);
-  const { theme } = useContext(ThemeContext);
+  const { theme, isMobile } = useContext(ThemeContext);
 
   return (
     <WeatherContext.Consumer>
@@ -20,8 +20,8 @@ export default function WeatherWind() {
           data={wind}
           enableCrosshair
           crosshairType="top-left"
-          pixelRatio={1}
-          margin={{ bottom: 60, left: 80, right: 30, top: 30 }}
+          pixelRatio={3}
+          margin={getMargin(isMobile)}
           tooltip={(d) => `${d.point.data.y} km/h`}
           curve="monotoneX"
           enableArea
@@ -30,7 +30,7 @@ export default function WeatherWind() {
             legendPosition: "middle",
             legendOffset: -55,
           }}
-          theme={getTheme(theme)}
+          theme={getTheme(theme, isMobile)}
           xScale={{
             type: "time",
             format: "native",

@@ -20,18 +20,24 @@ export function mergeDeep(target: any, ...sources: any) {
   return mergeDeep(target, ...sources);
 }
 
-export const getTheme = (theme: "dark" | "light") => {
+export const getMargin = (isMobile: boolean) => {
+  return isMobile
+    ? { bottom: 30, left: 40, right: 15, top: 15 }
+    : { bottom: 60, left: 80, right: 30, top: 30 };
+};
+
+export const getTheme = (theme: "dark" | "light", isMobile: boolean) => {
   const defaults = {
     axis: {
       legend: {
         text: {
-          fontSize: 20,
-          fontWeight: "bold",
+          fontSize: isMobile ? 10 : 20,
+          fontWeight: isMobile ? "normal" : "bold",
         },
       },
       ticks: {
         text: {
-          fontSize: 15,
+          fontSize: isMobile ? 8 : 15,
           fontWeight: "bold",
         },
       },
