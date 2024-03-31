@@ -28,10 +28,10 @@ export default function WeatherForecast() {
                       }
                 );
               }}
-              className={`cursor-pointer flex-1 flex flex-col items-center max-w-sm rounded overflow-hidden ${
+              className={`transition ease-in-out bg-white dark:bg-slate-800 cursor-pointer flex-1 flex flex-col items-center max-w-sm rounded overflow-hidden ${
                 day.date.hasSame(selectedDay, "day")
-                  ? "shadow-2xl"
-                  : "shadow-lg"
+                  ? "shadow-2xl scale-110"
+                  : "shadow-lg hover:scale-105"
               }`}
               style={{ padding: "1rem", height: "275px", width: "150px" }}
             >

@@ -76,9 +76,6 @@ export default function WeatherCombo() {
 
       const response = await fetch(meteoURL);
       const data = await response.json();
-      console.log(DateTime.now().setZone(timezone).toFormat("HH:mm"));
-      console.log(DateTime.now().setZone("Europe/Athens").toFormat("HH:mm"));
-      console.log(DateTime.now().setZone("Europe/Istanbul").toFormat("HH:mm"));
 
       const days: DayData[] = [];
       for (let i = 0; i < forecastDays; i++) {
