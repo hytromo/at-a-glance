@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useContext } from "react";
-import { InitDataContext } from "../app/data/page";
+import { InitDataContext } from "../app/data/init-data-context";
 import { WeatherContext, weatherContextDefaultValue } from "./WeatherCombo";
 import SunriseImage from "./sunrise.svg";
 import { wmoToDescription } from "./wmo_map";

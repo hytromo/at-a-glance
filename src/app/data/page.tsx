@@ -1,28 +1,13 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { createContext } from "react";
+import dynamic from "next/dynamic";
 import ElPrice from "../../components/ElPrice";
 import WeatherCombo from "../../components/WeatherCombo";
+import { InitDataContext, initDataDefaultValue } from "./init-data-context";
 
-export interface InitDataType {
-  timezone: string;
-  latitude: number;
-  longitude: number;
-  priceArea: string;
-}
-export const initDataDefaultValue = {
-  timezone: "Europe/Copenhagen",
-  latitude: 5.5,
-  longitude: 6.5,
-  priceArea: "DK2",
-};
+function Data() {
+  const searchParams = new URLSearchParams(document?.location?.search);
 
-export const InitDataContext =
-  createContext<InitDataType>(initDataDefaultValue);
-
-export default function Data() {
-  const searchParams = useSearchParams();
   return (
     <InitDataContext.Provider
       value={{
@@ -48,3 +33,7 @@ export default function Data() {
     </InitDataContext.Provider>
   );
 }
+
+export default dynamic(() => Promise.resolve(Data), {
+  ssr: false,
+});

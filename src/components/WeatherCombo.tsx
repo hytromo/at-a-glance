@@ -8,7 +8,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { InitDataContext } from "../app/data/page";
+import { InitDataContext } from "../app/data/init-data-context";
 import WeatherForecast from "./WeatherForecast";
 import WeatherPrecipitation from "./WeatherPrecipitation";
 import WeatherWind from "./WeatherWind";

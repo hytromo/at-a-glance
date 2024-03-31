@@ -4,7 +4,7 @@ import { ResponsiveLineCanvas } from "@nivo/line";
 
 import { DateTime } from "luxon";
 import { useContext } from "react";
-import { InitDataContext } from "../app/data/page";
+import { InitDataContext } from "../app/data/init-data-context";
 import { WeatherContext } from "./WeatherCombo";
 
 export default function WeatherPrecipitation() {

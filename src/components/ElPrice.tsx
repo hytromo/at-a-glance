@@ -5,7 +5,7 @@ import { ResponsiveLineCanvas, Serie } from "@nivo/line";
 import { DateTime } from "luxon";
 
 import { useContext, useEffect, useMemo, useState } from "react";
-import { InitDataContext } from "../app/data/page";
+import { InitDataContext } from "../app/data/init-data-context";
 
 type HourlyRecord = {
   HourUTC: string;
