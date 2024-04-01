@@ -24,8 +24,8 @@ function Data() {
           searchParams.get("priceArea") || initDataDefaultValue.priceArea,
       }}
     >
-      <div className="grid grid-cols-2">
-        <div style={{ width: "50vw", height: "50vh" }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div style={{ height: "50vh" }}>
           <ElPrice />
         </div>
         <WeatherCombo />

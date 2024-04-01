@@ -28,7 +28,7 @@ export default function WeatherWind() {
           axisLeft={{
             legend: "Speed in km/h",
             legendPosition: "middle",
-            legendOffset: -55,
+            legendOffset: isMobile ? -32 : -55,
           }}
           theme={getTheme(theme, isMobile)}
           xScale={{
@@ -49,7 +49,7 @@ export default function WeatherWind() {
             tickValues: "every 1 hour",
             legend: "Hour",
             legendPosition: "middle",
-            legendOffset: 40,
+            legendOffset: isMobile ? 20 : 40,
           }}
           yScale={{
             type: "linear",

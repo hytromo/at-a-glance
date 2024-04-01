@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import { InitDataContext } from "../app/data/init-data-context";
+import { ThemeContext } from "../app/theme-context";
 import WeatherForecast from "./WeatherForecast";
 import WeatherPrecipitation from "./WeatherPrecipitation";
 import WeatherWind from "./WeatherWind";
@@ -44,6 +45,7 @@ export const WeatherContext = createContext<WeatherContextType>(
 export default function WeatherCombo() {
   const [weatherContext, setWeatherContext] =
     useState<WeatherContextType | null>(null);
+  const { isMobile } = useContext(ThemeContext);
 
   const { timezone, latitude, longitude } = useContext(InitDataContext);
 
@@ -174,19 +176,15 @@ export default function WeatherCombo() {
     <WeatherContext.Provider value={weatherContext}>
       <div
         className="flex items-center justify-center"
-        style={{ width: "50vw", height: "50vh" }}
+        style={{ height: "50vh" }}
       >
         <WeatherForecast />
       </div>
-      <div>
-        <div style={{ width: "50vw", height: "50vh" }}>
-          <WeatherPrecipitation />
-        </div>
+      <div style={{ height: isMobile ? "100vh" : "50vh" }}>
+        <WeatherPrecipitation />
       </div>
-      <div>
-        <div style={{ width: "50vw", height: "50vh" }}>
-          <WeatherWind />
-        </div>
+      <div style={{ height: isMobile ? "100vh" : "50vh" }}>
+        <WeatherWind />
       </div>
     </WeatherContext.Provider>
   );

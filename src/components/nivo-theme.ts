@@ -22,7 +22,7 @@ export function mergeDeep(target: any, ...sources: any) {
 
 export const getMargin = (isMobile: boolean) => {
   return isMobile
-    ? { bottom: 30, left: 40, right: 15, top: 15 }
+    ? { bottom: 40, left: 40, right: 15, top: 15 }
     : { bottom: 60, left: 80, right: 30, top: 30 };
 };
 

@@ -27,7 +27,7 @@ export default function WeatherPrecipitation() {
           axisLeft={{
             legend: "Precipitation in %",
             legendPosition: "middle",
-            legendOffset: -55,
+            legendOffset: isMobile ? -32 : -55,
           }}
           tooltip={(d) => `${d.point.data.y}%`}
           theme={getTheme(theme, isMobile)}
@@ -49,7 +49,7 @@ export default function WeatherPrecipitation() {
             tickValues: "every 1 hour",
             legend: "Hour",
             legendPosition: "middle",
-            legendOffset: 40,
+            legendOffset: isMobile ? 20 : 40,
           }}
           yScale={{
             type: "linear",

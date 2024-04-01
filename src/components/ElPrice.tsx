@@ -244,12 +244,12 @@ export default function ElPrice() {
         tickValues: isMobile ? undefined : allDataPoints?.map((d) => d.x) || [],
         legend: "Hour",
         legendPosition: "middle",
-        legendOffset: 40,
+        legendOffset: isMobile ? 20 : 40,
       }}
       axisLeft={{
         legend: "Price in €/KWh",
         legendPosition: "middle",
-        legendOffset: -55,
+        legendOffset: isMobile ? -32 : -55,
       }}
       pointBorderWidth={isMobile ? 2 : 4}
       pointBorderColor={(p: { index: number }) => {

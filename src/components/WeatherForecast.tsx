@@ -39,7 +39,7 @@ export default function WeatherForecast() {
                 width={isMobile ? "30px" : "50px"}
                 src={wmoToDescription[day.weather_code].day.image}
               />
-              <div style={{ marginBottom: ".75rem" }}>
+              <div style={{ marginBottom: ".75rem", whiteSpace: "nowrap" }}>
                 {wmoToDescription[day.weather_code].day.description}
               </div>
 
