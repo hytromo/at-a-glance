@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useLayoutEffect, useState } from "react";
 import { ThemeContext } from "../app/theme-context";
+import FullScreen from "./FullScreen";
 import ToggleTheme from "./ToggleTheme";
 
 function MainLayout({
@@ -37,14 +38,7 @@ function MainLayout({
   return (
     <ThemeContext.Provider value={{ theme, isMobile, setTheme }}>
       <ToggleTheme />
-      <button
-        style={{ position: "absolute", top: "1rem", right: "3rem" }}
-        onClick={() => {
-          document.documentElement.requestFullscreen();
-        }}
-      >
-        Full
-      </button>
+      <FullScreen />
       {children}
     </ThemeContext.Provider>
   );

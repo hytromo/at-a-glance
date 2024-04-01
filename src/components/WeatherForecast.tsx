@@ -1,12 +1,14 @@
 import Image from "next/image";
 import { useContext } from "react";
 import { InitDataContext } from "../app/data/init-data-context";
+import { ThemeContext } from "../app/theme-context";
 import { WeatherContext, weatherContextDefaultValue } from "./WeatherCombo";
 import SunriseImage from "./sunrise.svg";
 import { wmoToDescription } from "./wmo_map";
 
 export default function WeatherForecast() {
   const { timezone } = useContext(InitDataContext);
+  const { isMobile } = useContext(ThemeContext);
 
   return (
     <WeatherContext.Consumer>
@@ -34,8 +36,7 @@ export default function WeatherForecast() {
             >
               <div>{day.date.setZone(timezone).toFormat("EEE d MMM")}</div>
               <img
-                width="50px"
-                style={{ clipPath: "circle(30%)" }}
+                width={isMobile ? "30px" : "50px"}
                 src={wmoToDescription[day.weather_code].day.image}
               />
               <div style={{ marginBottom: ".75rem" }}>
@@ -49,7 +50,7 @@ export default function WeatherForecast() {
               <div className="text-slate-400 text-xs flex flex-col items-center">
                 <Image
                   style={{ display: "inline-block" }}
-                  width={25}
+                  width={isMobile ? 15 : 25}
                   alt="sunrise"
                   priority
                   src={SunriseImage}

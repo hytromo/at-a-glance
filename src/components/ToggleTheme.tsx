@@ -9,7 +9,7 @@ const ToggleTheme = () => {
     <button
       type="button"
       onClick={() => setTheme((pr) => (pr === "dark" ? "light" : "dark"))}
-      style={{ position: "absolute", top: "1rem", right: "1rem" }}
+      style={{ position: "absolute", top: "1rem", right: "5rem" }}
       className="rounded-full"
       aria-label="toggle theme"
     >

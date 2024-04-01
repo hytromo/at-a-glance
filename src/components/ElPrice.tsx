@@ -251,7 +251,7 @@ export default function ElPrice() {
         legendPosition: "middle",
         legendOffset: -55,
       }}
-      pointBorderWidth={4}
+      pointBorderWidth={isMobile ? 2 : 4}
       pointBorderColor={(p: { index: number }) => {
         const y = allDataPoints?.[p.index]?.y;
         if (
