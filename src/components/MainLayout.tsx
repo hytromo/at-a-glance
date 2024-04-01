@@ -37,6 +37,14 @@ function MainLayout({
   return (
     <ThemeContext.Provider value={{ theme, isMobile, setTheme }}>
       <ToggleTheme />
+      <button
+        style={{ position: "absolute", top: "1rem", right: "3rem" }}
+        onClick={() => {
+          document.documentElement.requestFullscreen();
+        }}
+      >
+        Full
+      </button>
       {children}
     </ThemeContext.Provider>
   );
