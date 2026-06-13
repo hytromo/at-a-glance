@@ -27,7 +27,17 @@ jobs:
         run: |
           bun run scripts/update-prices.ts
 
+      - name: Check if changes
+        id: has-changes
+        run: |
+          if ! git diff --quiet HEAD; then
+            echo "value=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Commit and push
+        if: ${{ steps.has-changes.outputs.value == 'true' }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
