@@ -31,6 +31,7 @@ jobs:
       - name: Check if changes
         id: has-changes
         run: |
+          git add -A
           if ! git diff --quiet HEAD; then
             echo "value=true" >> "$GITHUB_OUTPUT"
           else
@@ -42,7 +43,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -am "Update electricity pricing data"
+          git commit -m "Update electricity pricing data"
           git push
 
       - name: Run static workflow
