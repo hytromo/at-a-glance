@@ -1,0 +1,33 @@
+# The pricing API restricts direct API calls from a browser.
+# Prices change only once daily, so we can cache the prices daily instead
+name: Refresh prices
+
+on:
+  schedule:
+    - cron: "15 14 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# TODO: make it push, also, do we need to manually trigger the website generation (through workflow dispatch?)
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Update price file
+        run: |
+          bun run scripts/update-prices.ts
+
+      - name: Commit and push
+        run: |
+          git commit -am "Update electricity pricing data"
+          git push

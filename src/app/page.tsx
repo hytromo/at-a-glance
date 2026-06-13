@@ -1,5 +1,5 @@
 "use client";
 
 export default function Home() {
-  return <div>Go to /data</div>;
+  return <div>Go to /at-a-glance/data</div>;
 }

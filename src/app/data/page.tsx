@@ -14,11 +14,11 @@ function Data() {
         timezone: searchParams.get("timezone") || initDataDefaultValue.timezone,
         latitude: parseFloat(
           searchParams.get("latitude") ||
-            initDataDefaultValue.latitude.toString()
+            initDataDefaultValue.latitude.toString(),
         ),
         longitude: parseFloat(
           searchParams.get("longitude") ||
-            initDataDefaultValue.longitude.toString()
+            initDataDefaultValue.longitude.toString(),
         ),
         priceArea:
           searchParams.get("priceArea") || initDataDefaultValue.priceArea,
