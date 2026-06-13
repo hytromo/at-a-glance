@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 # TODO: make it push, also, do we need to manually trigger the website generation (through workflow dispatch?)
 jobs:
@@ -43,3 +44,9 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git commit -am "Update electricity pricing data"
           git push
+
+      - name: Run static workflow
+        if: ${{ steps.has-changes.outputs.value == 'true' }}
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: static.yml
