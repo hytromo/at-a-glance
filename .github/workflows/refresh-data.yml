@@ -29,5 +29,7 @@ jobs:
 
       - name: Commit and push
         run: |
+          git config --global user.email "ci@github.com"
+          git config --global user.name "Github CI"
           git commit -am "Update electricity pricing data"
           git push
